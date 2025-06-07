@@ -1,3 +1,4 @@
+import time
 from seleniumbase import SB
 from nushen import Nushen
 from selenium.webdriver.common.by import By
@@ -50,6 +51,23 @@ def run():
         except Exception as e:
             nushen.dbPrint(pluginName,{str(e)})
             nushen.dbPrint(pluginName, "未能找到用户名元素，可能未登录或页面结构已改变",True)
+            loginRes=input("是否要登录 1继续 (等待8秒)")
+            for i in range(9):
+                time.sleep(1)
+                if loginRes!='':break
+            if loginRes!=1:return
+            print('收到你的回复啦 快去登录 等待90秒')
+            for i in range(91):
+                time.sleep(1)
+                print(f'快去登录 还剩{90-i}秒')
+            print('正在保存cookie')
+            # 保存cookie
+            saveCookieRes = nushen.setCookies(pluginName, sb.get_cookies(), pluginUrl)
+            if saveCookieRes:
+                print("已保存cookie")
+
+            else:
+                print('保存cookie失败,未知问题')
             return
             
         # 任务逻辑
@@ -69,4 +87,4 @@ def run():
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506071737'
+    return '202506071738'
