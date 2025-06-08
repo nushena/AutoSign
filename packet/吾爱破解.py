@@ -22,7 +22,7 @@ def run():
         sb.open(nushen.deafultUrl)
         sb.set_window_size(browserX|nushen.browserX, browserY|nushen.browserY)
         proxyUrl=nushen.getProxy()
-        nushen.dbPrint(pluginName,"使用代理 {proxyUrl}")
+        nushen.dbPrint(pluginName,f"使用代理 {proxyUrl}")
         sb.set_wire_proxy(proxyUrl)
         sb.open(pluginUrl)
         sb.clear_all_cookies()
