@@ -23,7 +23,7 @@ def run():
         nushen.dbPrint(pluginName+'运行锁', "今日任务已完成",True)
         return
     already_signed=False
-    with SB(test=True,browser="edge", uc=True) as sb:
+    with SB(test=True, uc=True) as sb:
         sb.open(nushen.deafultUrl)
         sb.set_window_size(browserX|nushen.browserX, browserY|nushen.browserY)
         sb.open(pluginUrl)
@@ -130,4 +130,4 @@ def run():
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506082233'
+    return '202506082246'
