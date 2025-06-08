@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 import random
 
 def run():
-    pluginBoolean = True
+    pluginBoolean = False
     pluginName = '酒入论坛'
     pluginUrl = 'https://www.jr37.xyz/home.php?mod=spacecp&ac=credit&showcredit=1'
     browserX=0
@@ -130,4 +130,4 @@ def run():
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506082246'
+    return '202506082323'

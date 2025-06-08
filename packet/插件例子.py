@@ -40,7 +40,14 @@ def run():
         # 获取个人信息
         try:
             pass
-        
+            # 判断是否已经签到
+            already_signed = False
+            try:
+                if sb.is_element_present('#pper_a66 img[src*="dsu_amupper/images/wb.png"]'):
+                    already_signed = True
+                    nushen.dbPrint(pluginName, "今日已签到")
+            except Exception as e:
+                pass
             if False:
                 # 今日已完成 设置运行锁
                 nushen.setRunBlock(pluginName)
@@ -99,4 +106,4 @@ def run():
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506082246'
+    return '202506082323'

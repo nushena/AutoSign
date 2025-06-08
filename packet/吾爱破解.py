@@ -5,7 +5,7 @@ from nushen import Nushen
 from selenium.webdriver.common.by import By
 
 def run():
-    pluginBoolean = True
+    pluginBoolean = False
     pluginName = '吾爱破解'
     pluginUrl = 'https://www.52pojie.cn/home.php?mod=spacecp&ac=credit&showcredit=1'
     browserX=0
@@ -44,11 +44,14 @@ def run():
             userCoin=userCoin.replace('捐助»', '').strip()
             nushen.dbPrint(pluginName, f"用户名：{userName}，{userCoin}")
             already_signed = False
-            if sb.find_elements("div#um p img[src*='image/common/wbs.png']"):
-                already_signed = True
-                nushen.dbPrint(pluginName, "今日已签到")
-                # 今日已完成 设置运行锁
-                nushen.setRunBlock(pluginName)
+            try:
+                if sb.is_element_present("div#um p img[src*='image/common/wbs.png']"):
+                    already_signed = True
+                    nushen.dbPrint(pluginName, "今日已签到")
+                    # 今日已完成 设置运行锁
+                    nushen.setRunBlock(pluginName)
+            except:
+                pass
         except Exception as e:
             nushen.dbPrint(pluginName,{str(e)})
             nushen.dbPrint(pluginName, "未能找到用户名元素，可能未登录或页面结构已改变",True)
@@ -107,4 +110,4 @@ def run():
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506082246'
+    return '202506082323'
