@@ -228,6 +228,7 @@ def checkEnv():
         import requests
         import selenium
         import seleniumbase
+        import ddddocr
     except ImportError as e:
         print(f"导入错误: {str(e)}")
         print("正在安装依赖...")
@@ -246,4 +247,4 @@ if __name__ == '__main__':
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506071739'
+    return '202506091533'
