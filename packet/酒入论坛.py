@@ -76,6 +76,7 @@ def run():
             sb.sleep(4)
             nushen.dbPrint(pluginName,'点击登录')
             sb.click('button[name="loginsubmit"]')
+            sb.sleep(5)
         except Exception as e:
             nushen.dbPrint(pluginName, f"处理验证码出错: {str(e)}")     
         nushen.dbPrint(pluginName,'登录结束')
@@ -134,4 +135,4 @@ def run():
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506091533'
+    return '202506091655'
