@@ -7,7 +7,7 @@ import random
 import os
 
 def run():
-    pluginBoolean = True
+    pluginBoolean = False
     pluginName = '酒入论坛'
     # pluginUrl = 'https://www.jr37.xyz/home.php?mod=spacecp&ac=credit&showcredit=1'
     pluginUrl = 'https://www.jr37.xyz/'
@@ -22,12 +22,12 @@ def run():
         nushen.dbPrint(pluginName+'运行锁', "今日任务已完成",True)
         return
     already_signed=False
+    # proxyUrl = str(nushen.getProxy())
+    # nushen.dbPrint(pluginName,f"使用代理 {proxyUrl}")
+    # with SB(test=True, uc=True, proxy=proxyUrl) as sb:
     with SB(test=True, uc=True) as sb:
         sb.open(nushen.deafultUrl)
         sb.set_window_size(browserX|nushen.browserX, browserY|nushen.browserY)
-        # proxyUrl=nushen.getProxy()
-        # nushen.dbPrint(pluginName,"使用代理 {proxyUrl}")
-        # sb.set_wire_proxy(proxyUrl)
         sb.open(pluginUrl)
         sb.clear_all_cookies()
         
@@ -135,4 +135,4 @@ def run():
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506091655'
+    return '202506111523'

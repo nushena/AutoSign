@@ -2,10 +2,9 @@ import threading
 import time
 from seleniumbase import SB
 from nushen import Nushen
-from selenium.webdriver.common.by import By
 
 def run():
-    pluginBoolean = False
+    pluginBoolean = True
     pluginName = '吾爱破解'
     pluginUrl = 'https://www.52pojie.cn/home.php?mod=spacecp&ac=credit&showcredit=1'
     browserX=0
@@ -18,12 +17,12 @@ def run():
     if nushen.getRunBlock(pluginName):
         nushen.dbPrint(pluginName+'运行锁', "今日任务已完成",True)
         return
-    with SB(test=True, uc=True) as sb:
+    proxyUrl = str(nushen.getProxy())
+    nushen.dbPrint(pluginName,f"使用代理 {proxyUrl}")
+    with SB(test=True, uc=True, proxy=proxyUrl) as sb:
+    # with SB(test=True, uc=True) as sb:
         sb.open(nushen.deafultUrl)
-        sb.set_window_size(browserX|nushen.browserX, browserY|nushen.browserY)
-        proxyUrl=nushen.getProxy()
-        nushen.dbPrint(pluginName,f"使用代理 {proxyUrl}")
-        sb.set_wire_proxy(proxyUrl)
+        sb.set_window_size(browserX+nushen.browserX, browserY+nushen.browserY)
         sb.open(pluginUrl)
         sb.clear_all_cookies()
         
@@ -75,4 +74,4 @@ def run():
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506091533'
+    return '202506111523'
