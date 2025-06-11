@@ -56,7 +56,7 @@ def run():
             # 判断是否已经签到
             already_signed = False
             try:
-                if sb.is_element_present('#pper_a img[src*="dsu_amupper/images/wb.png"]'):
+                if sb.is_element_present('#pper_a[href*="plugin.php"] img[src*="dsu_amupper/images/wb.png"]'):
                     already_signed = True
                     nushen.dbPrint(pluginName, "今日已签到")
             except Exception as e:
@@ -120,4 +120,4 @@ def run():
     
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506111523'
+    return '202506111810'

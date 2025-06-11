@@ -26,18 +26,18 @@
     {
         "name":"科学刀", 
         "filePath":"./packet/科学刀.py",
-        "version":"202506111523",
+        "version":"202506111810",
         "downloadUrl":"https://raw.githubusercontent.com/nushena/AutoSign/refs/heads/main/packet/%E7%A7%91%E5%AD%A6%E5%88%80.py"
     },{
         "name":"酒入论坛", 
         "filePath":"./packet/酒入论坛.py",
-        "version":"202506111523",
+        "version":"202506111810",
         "downloadUrl":"https://raw.githubusercontent.com/nushena/AutoSign/refs/heads/main/packet/%E9%85%92%E5%85%A5%E8%AE%BA%E5%9D%9B.py"
     }
     ,{
         "name":"吾爱破解", 
         "filePath":"./packet/吾爱破解.py",
-        "version":"202506111523",
+        "version":"202506111810",
         "downloadUrl":"https://raw.githubusercontent.com/nushena/AutoSign/refs/heads/main/packet/%E5%90%BE%E7%88%B1%E7%A0%B4%E8%A7%A3.py"
     }
 ]

@@ -7,7 +7,7 @@ import random
 import os
 
 def run():
-    pluginBoolean = False
+    pluginBoolean = True
     pluginName = '酒入论坛'
     # pluginUrl = 'https://www.jr37.xyz/home.php?mod=spacecp&ac=credit&showcredit=1'
     pluginUrl = 'https://www.jr37.xyz/'
@@ -135,4 +135,4 @@ def run():
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506111523'
+    return '202506111810'

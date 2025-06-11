@@ -35,6 +35,7 @@ def run():
                 except Exception:
                     pass
             sb.refresh()
+            sb.sleep(2)
         
         # 获取个人信息
         try:
@@ -61,7 +62,7 @@ def run():
         try:
             if not already_signed:
                 sb.open('https://www.52pojie.cn/home.php?mod=task&do=apply&id=2')
-                sb.sleep(2)
+                sb.sleep(4)
                 nushen.dbPrint(pluginName,'签到完成')
         except Exception as e:
             nushen.dbPrint(pluginName, f"签到过程出错: {str(e)}")
@@ -74,4 +75,4 @@ def run():
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506111523'
+    return '202506111810'
