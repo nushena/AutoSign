@@ -56,13 +56,22 @@ def run():
                 pass
             # 判断是否已经签到
             try:
-                # 获取签到按钮的图片源
-                sign_img_src = sb.get_attribute('#pper_a img', 'src')
-                if 'wb.png' in sign_img_src:
-                    already_signed = True
-                    nushen.dbPrint(pluginName, "今日已签到")
+                for i in range(2):
+                    if not already_signed:
+                        sb.click('#pper_a')
+                        sb.sleep(5)
+                        if sb.is_element_present('div.altw'):
+                            singmsg=sb.get_text('div.alert_error')
+                            if '您已签到完毕' in singmsg:
+                                already_signed=True
+                                nushen.dbPrint(pluginName, "今日已签到")
+                            else:
+                                already_signed=False
+                    sb.refresh()
+                    sb.sleep(5)
             except Exception as e:
-                pass
+                nushen.dbPrint(pluginName, f"检查签到状态出错: {str(e)}")
+                already_signed = False
             if (already_answered and already_signed):
                 # 今日已完成 设置运行锁
                 nushen.setRunBlock(pluginName)
@@ -71,15 +80,6 @@ def run():
             # 使用新的handle_login_required方法处理未登录情况
             if not nushen.handle_login_required(pluginName, sb, pluginUrl):
                 return
-            
-        # 签到逻辑
-        try:
-            if not already_signed:
-                sb.click('#pper_a')
-                nushen.dbPrint(pluginName, "点击签到按钮")
-                sb.sleep(5)
-        except Exception as e:
-            nushen.dbPrint(pluginName, f"签到过程出错: {str(e)}",True)
             
         # 答题逻辑
         try:
@@ -112,7 +112,7 @@ def run():
         except Exception as e:
             nushen.dbPrint(pluginName, f"获取问题或答题过程出错: {str(e)}",True)
             return
-        
+     
         # 保存cookie
         saveCookieRes = nushen.setCookies(pluginName, sb.get_cookies(), pluginUrl)
         if saveCookieRes:
@@ -122,4 +122,4 @@ def run():
     
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506141655'
+    return '202506141740'
