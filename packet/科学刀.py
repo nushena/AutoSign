@@ -39,6 +39,8 @@ def run():
         
         # 获取个人信息
         try:
+            already_answered = False
+            already_signed = False
             username = sb.get_text("strong.vwmy a")
             nushen.dbPrint(pluginName, f"当前用户名: {username}")
             userGroup = sb.get_text("a#g_upmine")
@@ -46,7 +48,6 @@ def run():
             userPoints = sb.get_text("a#extcreditmenu")
             nushen.dbPrint(pluginName, f"当前{userPoints}")
             # 判断是否已经答题
-            already_answered = False
             try:
                 if sb.is_element_present('#um p a img[src*="ahome_dayquestion/images/end.gif"]'):
                     already_answered = True
@@ -54,10 +55,10 @@ def run():
             except Exception as e:
                 pass
             # 判断是否已经签到
-            already_signed = False
             try:
-                # 修改检测逻辑：检查#pper_b是否可见或#pper_a是否隐藏
-                if not (sb.is_element_present('#pper_a[style*="display:none"]')):
+                # 获取签到按钮的图片源
+                sign_img_src = sb.get_attribute('#pper_a img', 'src')
+                if 'wb.png' in sign_img_src:
                     already_signed = True
                     nushen.dbPrint(pluginName, "今日已签到")
             except Exception as e:
@@ -121,4 +122,4 @@ def run():
     
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506121507'
+    return '202506141655'
