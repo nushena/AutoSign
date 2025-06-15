@@ -220,6 +220,45 @@ def extract_version_from_file(file_path):
         return None
 
 def checkEnv():
+    # 检查虚拟环境
+    venv_dir = ".venv"
+    if not os.path.exists(venv_dir):
+        print("虚拟环境不存在，正在创建...")
+        try:
+            import venv
+            venv.create(venv_dir, with_pip=True)
+            print("虚拟环境创建成功")
+        except Exception as e:
+            print(f"创建虚拟环境失败: {str(e)}")
+            sys.exit(1)
+
+    # 获取虚拟环境的Python解释器路径
+    if os.name == 'nt':  # Windows
+        venv_python = os.path.join(venv_dir, 'Scripts', 'python.exe')
+    else:  # Linux/Mac
+        venv_python = os.path.join(venv_dir, 'bin', 'python')
+
+    # 检查是否已经在虚拟环境中
+    if 'VIRTUAL_ENV' not in os.environ:
+        print("当前不在虚拟环境中，正在切换到虚拟环境...")
+        try:
+            import subprocess
+            # 设置环境变量
+            env = os.environ.copy()
+            env['VIRTUAL_ENV'] = os.path.abspath(venv_dir)
+            if os.name == 'nt':  # Windows
+                env['PATH'] = os.path.join(env['VIRTUAL_ENV'], 'Scripts') + os.pathsep + env['PATH']
+            else:  # Linux/Mac
+                env['PATH'] = os.path.join(env['VIRTUAL_ENV'], 'bin') + os.pathsep + env['PATH']
+            
+            # 使用虚拟环境的Python解释器运行当前脚本
+            print(f"使用Python解释器: {venv_python}")
+            subprocess.run([venv_python, __file__], env=env, check=True)
+            sys.exit(0)
+        except subprocess.CalledProcessError as e:
+            print(f"切换到虚拟环境失败: {str(e)}")
+            sys.exit(1)
+
     # 检查环境
     try:
         import requests
@@ -234,7 +273,7 @@ def checkEnv():
         print("正在安装依赖...")
         import subprocess
         try:
-            subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+            subprocess.check_call([venv_python, "-m", "pip", "install", "-r", "requirements.txt", "-i", "https://pypi.tuna.tsinghua.edu.cn/simple"])
             print("依赖安装完成")
         except subprocess.CalledProcessError as e:
             print(f"安装依赖失败: {str(e)}")
@@ -247,4 +286,4 @@ if __name__ == '__main__':
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506091533'
+    return '202506152141'
