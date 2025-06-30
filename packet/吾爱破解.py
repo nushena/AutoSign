@@ -1,5 +1,3 @@
-import threading
-import time
 from seleniumbase import SB
 from nushen import Nushen
 
@@ -35,15 +33,16 @@ def run():
                 except Exception:
                     pass
             sb.refresh()
+            print('加载cookie完成')
             sb.sleep(2)
         
         # 获取个人信息
+        already_signed = False
         try:
             userName=sb.get_text('strong.vwmy')
             userCoin=sb.get_text('li.xi1')
             userCoin=userCoin.replace('捐助»', '').strip()
             nushen.dbPrint(pluginName, f"用户名：{userName}，{userCoin}")
-            already_signed = False
             try:
                 if sb.is_element_present("div#um p img[src*='image/common/wbs.png']"):
                     already_signed = True
@@ -61,8 +60,18 @@ def run():
         # 任务逻辑
         try:
             if not already_signed:
-                sb.open('https://www.52pojie.cn/home.php?mod=task&do=apply&id=2')
-                sb.sleep(4)
+                # 尝试点击签到按钮，使用多种
+                try:
+                    sb.click('a[href*="home.php?mod=task&do=apply&id=2"]')
+                except Exception:
+                    try:
+                        sb.click('img[src*="static/image/common/qds.png"]')
+                    except Exception:
+                        try:
+                            sb.click('a[href*="task&do=apply"] img[src*="qds.png"]')
+                        except Exception:
+                            pass
+                sb.sleep(10)
                 nushen.dbPrint(pluginName,'签到完成')
         except Exception as e:
             nushen.dbPrint(pluginName, f"签到过程出错: {str(e)}")
@@ -75,4 +84,4 @@ def run():
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506111810'
+    return '202506300945'

@@ -141,16 +141,16 @@ class Nushen:
         deleteCookieName=[
                           ['吾爱破解','htVC_2132_lastvisit','htVC_2132_seccodecSAi3p','htVC_2132_seccodecSAi3pRGt'],
                           ['科学刀','JWUN_2132_lastvisit','JWUN_2132_pc_size_c','JWUN_2132_sendmail'],
-                         ]
+                        ]
         for deleteCookie in deleteCookieName:
             if name in deleteCookie[0]:
                 if cookie.get('name') in deleteCookie[1:]:
                     return None
-        # cookie['domain'] = domain
-        # if cookie.get('sameSite') not in ["Strict", "Lax", "None"]:
-        #     cookie['sameSite'] = "None"
-        # if cookie['sameSite'] == "None":
-        #     cookie['secure'] = True
+        cookie['domain'] = domain
+        if cookie.get('sameSite') not in ["Strict", "Lax", "None"]:
+            cookie['sameSite'] = "None"
+        if cookie['sameSite'] == "None":
+            cookie['secure'] = True
         return cookie
 
     def getCookie(self, name: str, url: str) -> List[Dict[str, Any]]:
@@ -251,6 +251,7 @@ class Nushen:
             os.makedirs(os.path.dirname(filePath), exist_ok=True)
             with open(filePath, 'w', encoding='utf-8') as f:
                 f.write(datetime.datetime.now().strftime('%Y-%m-%d'))
+            self.dbPrint(name, "创建运行锁成功")
             return True
         except Exception as e:
             print(f'创建运行锁时发生错误：{str(e)}')
@@ -461,4 +462,4 @@ class Nushen:
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506091533'
+    return '202506300945'

@@ -37,7 +37,8 @@ def run():
                 except Exception:
                     pass
             sb.refresh()
-        
+            print('加载cookie完成')
+            sb.sleep(2)
         # 获取个人信息
         try:
             pass
@@ -72,4 +73,4 @@ def run():
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506111523'
+    return '202506300945'
