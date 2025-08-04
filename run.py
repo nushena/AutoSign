@@ -283,7 +283,7 @@ def checkEnv():
 
 if __name__ == '__main__':
     checkEnv()
-    # checkVersion()
+    checkVersion()
     scan_and_run_packets()
 
 def getVersion():
