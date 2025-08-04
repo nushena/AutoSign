@@ -75,7 +75,6 @@ def getFastProxy():
     import requests
     examplesUrl='https://raw.githubusercontent.com/nushena/AutoSign/refs/heads/main/update.json'
     proxyList=[
-        'https://github-speedup.com/',
         'https://ghfast.top/',
         'https://gh-proxy.com/',
         'https://github.moeyy.xyz/',
@@ -273,7 +272,10 @@ def checkEnv():
         print("正在安装依赖...")
         import subprocess
         try:
-            subprocess.check_call([venv_python, "-m", "pip", "install", "-r", "requirements.txt", "-i", "https://pypi.tuna.tsinghua.edu.cn/simple"])
+            try:
+                subprocess.check_call([venv_python, "-m", "pip", "install", "-r", "requirements.txt", "-i", "https://mirrors.cloud.tencent.com/pypi/simple/"])
+            except:
+                subprocess.check_call([venv_python, "-m", "pip", "install", "-r", "requirements.txt", "-i", "https://pypi.tuna.tsinghua.edu.cn/simple/"])
             print("依赖安装完成")
         except subprocess.CalledProcessError as e:
             print(f"安装依赖失败: {str(e)}")
@@ -281,9 +283,9 @@ def checkEnv():
 
 if __name__ == '__main__':
     checkEnv()
-    checkVersion()
+    # checkVersion()
     scan_and_run_packets()
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506152141'
+    return '202508042320'
