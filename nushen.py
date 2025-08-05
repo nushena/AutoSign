@@ -308,12 +308,14 @@ class Nushen:
             print(f"使用默认一言：{default_msg}，长度：{len(default_msg)}")
             return default_msg
 
-    def getProxy(self):
+    def getProxy(self,address=''):
         load_dotenv()
         proxy_url = os.getenv("PROXY_URL")
         if not proxy_url:
             return ''
         url = f"{proxy_url}"
+        if address:
+            url += f"&area={address}"
         response = requests.get(url, timeout=5)
         if response.status_code != 200:
             return ''
@@ -462,4 +464,4 @@ class Nushen:
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202506300945'
+    return '202508051421'

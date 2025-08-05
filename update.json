@@ -8,7 +8,7 @@
     {
         "name":"nushen库", 
         "filePath":"./nushen.py",
-        "version":"202506300945",
+        "version":"202508051421",
         "downloadUrl":"https://raw.githubusercontent.com/nushena/AutoSign/refs/heads/main/nushen.py"
     },
     {
@@ -39,5 +39,11 @@
         "filePath":"./packet/吾爱破解.py",
         "version":"202506300945",
         "downloadUrl":"https://raw.githubusercontent.com/nushena/AutoSign/refs/heads/main/packet/%E5%90%BE%E7%88%B1%E7%A0%B4%E8%A7%A3.py"
+    }
+    ,{
+        "name":"清风货源", 
+        "filePath":"./packet/清风货源.py",
+        "version":"202508051419",
+        "downloadUrl":"https://raw.githubusercontent.com/nushena/AutoSign/refs/heads/main/packet/%E6%B8%85%E9%A3%8E%E8%B4%A7%E6%BA%90.py"
     }
 ]
