@@ -66,7 +66,7 @@ def run():
         try:
             if not already_signed:
                 sb.click('button[id="qiandao"]')
-                sb.sleep(5)
+                sb.sleep(10)
                 checkInBonus=sb.get_text('div.layui-layer-content')
                 nushen.dbPrint(pluginName,checkInBonus)
         except Exception as e:
