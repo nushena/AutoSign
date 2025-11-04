@@ -286,11 +286,12 @@ class Nushen:
     def hitokoto(self):
         try:
             # 构建请求URL和参数
-            url = 'https://api.yyy001.com/api/yiyan'
+            url = 'https://api.cenguigui.cn/api/yiyan/'
             # 发送请求
             response = requests.get(url, timeout=5)
             response.raise_for_status()  # 如果响应状态码不是200，则抛出异常
             resData = response.text
+            self.dbPrint("Hitokoto", f"随机一言：{resData}，长度：{len(resData)}")
             
             # 添加字符长度限制（10-40字符）
             if len(resData) < 10:
@@ -299,13 +300,13 @@ class Nushen:
                     resData += "，" + resData  # 使用原内容进行补充
             elif len(resData) > 40:
                 # 超过40个字符时截断
-                resData = resData[:40]     
+                resData = resData[:40]
             return resData
             
         except requests.RequestException as e:
             self.dbPrint("Hitokoto", f"获取一言时发生错误: {str(e)}")
             default_msg = '每一天都是一个全新的开始'
-            print(f"使用默认一言：{default_msg}，长度：{len(default_msg)}")
+            self.dbPrint("Hitokoto", f"使用默认一言：{default_msg}")
             return default_msg
 
     def getProxy(self,address=''):
@@ -464,4 +465,4 @@ class Nushen:
 
 def getVersion():
     # 你要想不更新就可以改成999999999999
-    return '202508051421'
+    return '202511041339'
