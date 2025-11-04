@@ -1,0 +1,7 @@
+__pycache__
+.venv/*
+downloaded_files
+captcha_images
+cookies
+runblock
+.env
